@@ -1,0 +1,73 @@
+<script type="text/javascript" src="{$index}/jscript/jquery/jquery.js"></script>
+
+{literal}
+<style>
+#sc-form-inner {}
+#sc-form-inner label {display:block;margin-bottom:3px;}
+#sc-form-inner .sc-form-item {color:#585858;margin:0 0 15px 0;}
+
+#sc_form_id {margin:0;}
+
+.needsfilled {background:#ff3c00;border:1px solid #ff3c00!important;}
+</style>
+
+<script type="text/javascript">
+(function($) {
+$(function() {
+	$(".simple_callback_submit").on('click', function()
+	{
+		var scphone = $("#scphone");
+
+		if (scphone.val() == '')
+		{
+			scphone.addClass("needsfilled");
+		}
+		else
+		{
+			$.ajax({
+				type: "POST",
+				url: "{/literal}{$linkAction}{literal}",
+				data: 'scphone=' + scphone.val(),
+				beforeSend: function() {
+					$("#sc-form-inner").css('display', 'none');
+					$("#sc-form-msg").html('Отправляю...');
+				},
+				success: function() {
+					$("#sc-form-msg").html('Заказ обратного звонка отправлен!');
+				}
+			});
+		}
+		return false;
+	});
+});
+})(jQuery);
+
+(function($) {
+$(function() {
+	$(":input").focus(function(){
+		if ($(this).hasClass("needsfilled"))
+		{
+			$(this).removeClass("needsfilled");
+		}
+	})
+});
+})(jQuery);
+</script>
+{/literal}
+
+<h2 class="modal-page-title">Заказать обратный звонок</h2>
+<div class="modal-page-body">
+
+	<div id="sc-form-msg"></div>
+
+	<div id="sc-form-inner">
+		<form id="sc_form_id" action="{$linkAction}" method="post">
+			<div style="display:none;"><input type="text" name="username" id="username" value="" /></div>
+			<div class="sc-form-item">
+				<label for="scphone">Ваш номер телефона</label>
+				<input type="text" name="scphone" id="scphone" value="" />
+			</div>
+			<input class="simple_callback_submit btn" type="submit" name="add_simple_callback" value="Заказ звонка" />
+		</form>
+	</div>
+</div>
