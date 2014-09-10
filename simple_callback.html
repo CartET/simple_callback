@@ -16,7 +16,8 @@
 $(function() {
 	$(".simple_callback_submit").on('click', function()
 	{
-		var scphone = $("#scphone");
+		var scphone = $("#scphone"),
+			scname = $("#scname");
 
 		if (scphone.val() == '')
 		{
@@ -27,7 +28,7 @@ $(function() {
 			$.ajax({
 				type: "POST",
 				url: "{/literal}{$linkAction}{literal}",
-				data: 'scphone=' + scphone.val(),
+				data: 'scphone='+scphone.val()+'&scname='+scname.val(),
 				beforeSend: function() {
 					$("#sc-form-inner").css('display', 'none');
 					$("#sc-form-msg").html('Отправляю...');
@@ -66,6 +67,10 @@ $(function() {
 			<div class="sc-form-item">
 				<label for="scphone">Ваш номер телефона</label>
 				<input type="text" name="scphone" id="scphone" value="" />
+			</div>
+			<div class="sc-form-item">
+				<label for="scname">Ваше имя</label>
+				<input type="text" name="scname" id="scname" value="" />
 			</div>
 			<input class="simple_callback_submit btn" type="submit" name="add_simple_callback" value="Заказ звонка" />
 		</form>

@@ -7,6 +7,7 @@
 *
 *---------------------------------------------------------
 */
+
 global $cartet;
 
 if (!$cartet->request->isAjax()) die();
@@ -26,7 +27,9 @@ else
 		<p>
 			В Вашем магазине '.STORE_NAME.' новый заказ обратного звонка.<br />
 			<b>Телефон:</b><br />
-			'.$cartet->request->get('scphone').'
+			'.$cartet->request->get('scphone').'<br />
+			<b>Имя:</b><br />
+			'.$cartet->request->get('scname').'
 		</p>
 		</body></html>
 		';

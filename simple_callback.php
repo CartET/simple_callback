@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Заказ звонка
 	Plugin URI: http://osc-cms.com/store/plugins/simple-callback
-	Version: 1.0
+	Version: 1.1
 	Description: Плагин Заказ обратного звонка
 	Author: CartET
 	Author URI: http://osc-cms.com
